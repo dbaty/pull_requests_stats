@@ -1,0 +1,44 @@
+[github]
+owner = "pass-culture"
+repository = "pass-culture-main"
+token_path = "/home/damien/.config/pull_requests_stats/token.pass-culture-main"
+
+
+[database]
+path = "dump.sqlite"
+
+
+[autotags]
+[autotags.backend]
+rules = [
+  {path = {matches = "api/.*"}},
+]
+
+[autotags.frontend]
+rules = [
+  {path = {matches = "pro/.*"}},
+]
+
+[autotags.dependabot]
+rules = [
+  {author = {equals = "dependabot"}},
+]
+
+
+[team]
+teams = [
+        "team-blue",
+        "team-red",
+]
+
+logins_to_ignore = [
+    "gitguardian",
+    "github-actions",
+    "sonarcloud",
+    "pass-culture-sentry-integration",  # FIXME: qu'est-ce que c'est ?
+]
+
+# Not used yet
+# {login}, {team}, {start} [,{end]]
+memberships = [
+]

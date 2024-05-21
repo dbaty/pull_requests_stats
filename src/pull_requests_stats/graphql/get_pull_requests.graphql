@@ -1,0 +1,63 @@
+query pullRequests (
+  $repositoryOwner: String!,
+  $repositoryName: String!,
+  $afterCursor: String,
+)
+{
+  repository(owner: $repositoryOwner, name: $repositoryName) {
+    pullRequests(
+      first: 10,
+      after: $afterCursor,
+      orderBy: {field: UPDATED_AT, direction: DESC},
+    ) {
+      nodes {
+        author {
+          login
+        }
+        closedAt
+        comments(first:100) {
+          nodes {
+            author {
+              login
+            }
+            publishedAt
+          }
+        }
+        commits(first: 5) {
+          nodes {
+            commit {
+              messageHeadline
+            }
+          }
+        }
+        createdAt
+        files(first:50) {
+          nodes {
+            path
+          }
+        }
+        labels(first:10) {
+          nodes {
+            name
+          }
+        }
+        number
+        permalink
+        reviews(first:10) {
+          nodes {
+            author {
+              login
+            }
+            state
+            submittedAt
+          }
+        }
+        updatedAt
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+    }
+  }
+}
